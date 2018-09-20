@@ -1,6 +1,6 @@
 {
   "name": "relative-microtime",
-  "version": "0.0.0",
+  "version": "1.0.0",
   "description": "Get the number of microseconds elapsed since January 1, 1970 00:00:00 UTC without fear of clock drift",
   "main": "index.js",
   "dependencies": {},
@@ -32,5 +32,9 @@
   "bugs": {
     "url": "https://github.com/watson/relative-microtime/issues"
   },
-  "homepage": "https://github.com/watson/relative-microtime#readme"
+  "homepage": "https://github.com/watson/relative-microtime#readme",
+  "coordinates": [
+    55.778268,
+    12.593064
+  ]
 }
