@@ -3,17 +3,19 @@
 const assert = require('assert')
 const microtime = require('./')
 
-// assert microtime() returns a safe integer
-assert(Number.isSafeInteger(microtime()))
+assert.strictEqual(typeof microtime, 'function')
+assert.strictEqual(typeof microtime(), 'function')
+assert(Number.isSafeInteger(microtime()()))
 
-// assert microtime() always returns a number >= to the previously returned number
+// assert timer() always returns a number >= to the previously returned number
 {
+  const timer = microtime()
   const max = 100000
   const results = new Array(max)
-  let prev = microtime()
+  let prev = timer()
 
   for (let i = 0; i < max; i++) {
-    results[i] = microtime()
+    results[i] = timer()
   }
 
   for (let i = 0; i < max; i++) {
@@ -22,10 +24,11 @@ assert(Number.isSafeInteger(microtime()))
   }
 }
 
-// assert microtime() always returns a number very close to the actual current microtime
+// assert timer() always returns a number very close to the actual current microtime
 {
+  const timer = microtime()
   const realMicrotime = Date.now() * 1000
-  const calculatedMicrotime = microtime()
+  const calculatedMicrotime = timer()
   const allowedDelta = 1000 // 1ms
   assert(realMicrotime - allowedDelta < calculatedMicrotime, `expects ${realMicrotime} - ${allowedDelta} < ${calculatedMicrotime}`)
   assert(realMicrotime + allowedDelta > calculatedMicrotime, `expects ${realMicrotime} + ${allowedDelta} > ${calculatedMicrotime}`)
